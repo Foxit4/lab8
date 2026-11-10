@@ -1,0 +1,10 @@
+{# Вставте в базовий шаблон навігації: {% include "_auth_nav.html" %} (поза іншими формами) #}
+{% if g.user %}
+  <p>Користувач: {{ g.user['username'] }}</p>
+  <form method="post" action="{{ url_for('logout') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <button type="submit">Вийти</button>
+  </form>
+{% else %}
+  <a href="{{ url_for('login') }}">Увійти</a>
+{% endif %}
